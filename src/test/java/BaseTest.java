@@ -22,7 +22,6 @@ public class BaseTest {
         public void finish() {
             this.driver.quit();
         }
-
     @BeforeMethod
     public void navigate() {
         this.driver.get("https://www.saucedemo.com/");

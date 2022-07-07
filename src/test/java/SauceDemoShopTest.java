@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class SauceDemoShopTest extends BaseTest {
+
     public void swagLabsTest(){
         WebElement userName = driver.findElement(By.cssSelector("[placeholder='Username']"));
         WebElement userNameStandard = driver.findElement(By.cssSelector("#login_credentials"));
