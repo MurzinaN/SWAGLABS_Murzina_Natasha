@@ -12,14 +12,12 @@ public class BaseTest {
 
         public BaseTest() {
         }
-
         @BeforeClass
         public void start() {
             WebDriverManager.chromedriver().setup();
             this.driver = new ChromeDriver();
             this.driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
         }
-
        @AfterClass
         public void finish() {
             this.driver.quit();

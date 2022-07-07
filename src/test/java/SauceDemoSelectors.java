@@ -37,5 +37,6 @@ public class SauceDemoSelectors extends BaseTest{
         Assert.assertEquals(actualProductName, selectedProductName, "checking the name of the product in the catalogs basket");
         Assert.assertEquals(actualProductPrice, selectedProductPrice, "checking the price of the product in the catalogs basket");
 
+
     }
 }
