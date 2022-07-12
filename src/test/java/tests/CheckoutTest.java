@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class CheckoutYourInfoTest extends BaseTest{
+public class CheckoutTest extends BaseTest{
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
     String firstNameErrorMessage = "Error: First Name is required";
     String lastNameErrorMessage = "Error: Last Name is required";
@@ -20,7 +20,7 @@ public class CheckoutYourInfoTest extends BaseTest{
         CheckoutYourInfoPage.setLastName("Beam");
         CheckoutYourInfoPage.setZip("12345");
         CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.checkoutFormMissing(), "CheckoutForm shouldn't be on display");
+        Assert.assertTrue(CheckoutYourInfoPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
     }
 
     @Test

@@ -19,7 +19,7 @@ public class BaseTest {
     pages.ProductsPage ProductsPage;
     pages.ItemDetailsPage ItemDetailsPage;
     pages.ShoppingCartPage ShoppingCartPage;
-    pages.CheckoutYourInfoPage CheckoutYourInfoPage;
+    CheckoutPage CheckoutYourInfoPage;
     @BeforeClass
     public void initialise(){
         WebDriverManager.chromedriver().setup();
@@ -29,7 +29,7 @@ public class BaseTest {
         ProductsPage = new ProductsPage(driver);
         ItemDetailsPage = new ItemDetailsPage(driver);
         ShoppingCartPage = new ShoppingCartPage(driver);
-        CheckoutYourInfoPage = new CheckoutYourInfoPage(driver);
+        CheckoutYourInfoPage = new CheckoutPage(driver);
     }
    @AfterClass
     public void finish() {

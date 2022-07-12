@@ -43,7 +43,7 @@ public class ShoppingCartPage extends HomePage{
         WebElement productShoppingCartContainer = getProductShoppingCartByName(productName);
         productShoppingCartContainer.findElement(removeButton).click();
     }
-    public boolean productContainerShoppingCartMissing(String productName){
+    public boolean productContainerShoppingCartPresent(String productName){
         return driver.findElements(By.xpath(String.format(productShoppingCartLocator, productName))).isEmpty();
     }
 }

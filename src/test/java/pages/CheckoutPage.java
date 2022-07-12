@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutYourInfoPage extends HomePage{
+public class CheckoutPage extends HomePage{
 
     private By firstNameInput = By.id("first-name");
     private By lastNameInput = By.id("last-name");
@@ -13,7 +13,7 @@ public class CheckoutYourInfoPage extends HomePage{
     private By checkoutErrorMassage = By.cssSelector(".error-message-container.error");
     private By checkoutForm = By.xpath("//form/div[@class='checkout_info']");
 
-    public CheckoutYourInfoPage(WebDriver driver) {
+    public CheckoutPage(WebDriver driver) {
         super(driver);
     }
 
@@ -38,7 +38,7 @@ public class CheckoutYourInfoPage extends HomePage{
     public String getCheckoutErrorMessageText(){
         return driver.findElement(checkoutErrorMassage).getText();
     }
-    public boolean checkoutFormMissing(){
+    public boolean checkoutFormPresent(){
         return driver.findElements(checkoutForm).isEmpty();
     }
 }
