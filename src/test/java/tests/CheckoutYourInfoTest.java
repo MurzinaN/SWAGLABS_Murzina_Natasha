@@ -1,11 +1,8 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.CheckoutYourInfoPage;
-import pages.ItemDetailsPage;
-import pages.ShoppingCartPage;
+
 
 public class CheckoutYourInfoTest extends BaseTest{
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
@@ -23,7 +20,7 @@ public class CheckoutYourInfoTest extends BaseTest{
         CheckoutYourInfoPage.setLastName("Beam");
         CheckoutYourInfoPage.setZip("12345");
         CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.checkoutFormMissing());
+        Assert.assertTrue(CheckoutYourInfoPage.checkoutFormMissing(), "CheckoutForm shouldn't be on display");
     }
 
     @Test
@@ -37,8 +34,8 @@ public class CheckoutYourInfoTest extends BaseTest{
         CheckoutYourInfoPage.setLastName("");
         CheckoutYourInfoPage.setZip("");
         CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed());
-        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),firstNameErrorMessage);
+        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed(), "Error message should be on display");
+        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),firstNameErrorMessage, "Error message should be 'Error: First Name is required'");
     }
 
     @Test
@@ -52,8 +49,8 @@ public class CheckoutYourInfoTest extends BaseTest{
         CheckoutYourInfoPage.setLastName("");
         CheckoutYourInfoPage.setZip("");
         CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed());
-        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),lastNameErrorMessage);
+        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed(), "Error message should be on display");
+        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),lastNameErrorMessage, "Error message should be 'Error: Last Name is required'");
     }
 
 }

@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest{
         LoginPage.setUserName("standard_user");
         LoginPage.setPassword("secret_sauce");
         LoginPage.clickLoginButton();
-        Assert.assertTrue(ProductsPage.isProductsPageHeaderDisplayed());
+        Assert.assertTrue(ProductsPage.isProductsPageHeaderDisplayed(), "ProductsPageHeader should be on display");
     }
 
     @Test
@@ -17,8 +17,8 @@ public class LoginTest extends BaseTest{
         LoginPage.setUserName("");
         LoginPage.setPassword("secret_sauce");
         LoginPage.clickLoginButton();
-        Assert.assertTrue(LoginPage.isErrorMessageDisplayed());
-        Assert.assertEquals(LoginPage.getErrorMessageTest(),"Epic sadface: Username is required");
+        Assert.assertTrue(LoginPage.isErrorMessageDisplayed(), "Error message should be on display");
+        Assert.assertEquals(LoginPage.getErrorMessageTest(),"Epic sadface: Username is required", "Error message should be 'Epic sadface: Username is required'");
     }
 
 }

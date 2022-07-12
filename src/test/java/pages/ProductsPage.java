@@ -11,6 +11,7 @@ public class ProductsPage extends HomePage{
     private By productsPageHeader = By.id("header_container");
     private By productPrice = By.className("inventory_item_price");
     private By descriptionText = By.className("inventory_item_desc");
+
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
