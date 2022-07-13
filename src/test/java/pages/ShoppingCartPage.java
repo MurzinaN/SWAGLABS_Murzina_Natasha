@@ -44,6 +44,6 @@ public class ShoppingCartPage extends HomePage{
         productShoppingCartContainer.findElement(removeButton).click();
     }
     public boolean productContainerShoppingCartPresent(String productName){
-        return driver.findElements(By.xpath(String.format(productShoppingCartLocator, productName))).isEmpty();
+        return !driver.findElements(By.xpath(String.format(productShoppingCartLocator, productName))).isEmpty();
     }
 }

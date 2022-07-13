@@ -23,7 +23,7 @@ public class ShoppingCartTest extends BaseTest{
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         ShoppingCartPage.clickRemoveButton(PRODUCT_NAME);
-        Assert.assertTrue(ShoppingCartPage.productContainerShoppingCartPresent(PRODUCT_NAME), "The product shouldn't be visible in the shopping cart");
+        Assert.assertFalse(ShoppingCartPage.productContainerShoppingCartPresent(PRODUCT_NAME), "The product shouldn't be visible in the shopping cart");
     }
 
     @Test

@@ -20,7 +20,7 @@ public class CheckoutTest extends BaseTest{
         CheckoutYourInfoPage.setLastName("Beam");
         CheckoutYourInfoPage.setZip("12345");
         CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
+        Assert.assertFalse(CheckoutYourInfoPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
     }
 
     @Test

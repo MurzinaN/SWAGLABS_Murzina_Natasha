@@ -39,6 +39,6 @@ public class CheckoutPage extends HomePage{
         return driver.findElement(checkoutErrorMassage).getText();
     }
     public boolean checkoutFormPresent(){
-        return driver.findElements(checkoutForm).isEmpty();
+        return !driver.findElements(checkoutForm).isEmpty();
     }
 }
