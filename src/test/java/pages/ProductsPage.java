@@ -13,8 +13,9 @@ import java.util.List;
 
 public class ProductsPage extends HomePage {
     String productContainerLocator = "//div[@class = 'inventory_item_name' and text() = '%s']/ancestor::div[@class='inventory_item']";
-    @FindBy(className = "product_sort_container")
-    WebElement sortButton;
+   // @FindBy(className = "product_sort_container")
+    //WebElement sortButton;
+    private final By sortButton = By.className("product_sort_container");
     private final By addToCartButton = By.cssSelector("button[id^='add-to-cart']");
     private final By productLink = By.cssSelector("a[id$='_link']");
     private final By productsPageHeader = By.id("header_container");
@@ -56,22 +57,22 @@ public class ProductsPage extends HomePage {
     }
 
     public void clickSortNameAToZ() {
-        Select select = new Select(sortButton);
+        Select select = new Select(driver.findElement(sortButton));
         select.selectByIndex(0);
     }
 
     public void clickSortNameZToA() {
-        Select select = new Select(sortButton);
+        Select select = new Select(driver.findElement(sortButton));
         select.selectByIndex(1);
     }
 
     public void clickSortPriceLowToHigh() {
-        Select select = new Select(sortButton);
+        Select select = new Select(driver.findElement(sortButton));
         select.selectByIndex(2);
     }
 
     public void clickSortPriceHighToLow() {
-        Select select = new Select(sortButton);
+        Select select = new Select(driver.findElement(sortButton));
         select.selectByIndex(3);
     }
 

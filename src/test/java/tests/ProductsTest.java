@@ -58,10 +58,7 @@ public class ProductsTest extends BaseTest {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.clickSortNameZToA();
         ProductsPage.sortNameZToA();
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(0), expectedProductNamesSortNameZToA().get(0));
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(3), expectedProductNamesSortNameZToA().get(3));
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(5), expectedProductNamesSortNameZToA().get(5));
-
+        Assert.assertEquals(ProductsPage.sortNameZToA(), expectedProductNamesSortNameZToA());
     }
 
 
