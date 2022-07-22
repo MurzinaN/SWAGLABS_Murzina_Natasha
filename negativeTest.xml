@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Smoke Tests" parallel="classes" thread-count="2">
     <parameter name="browser" value="chrome"/>
-    <test name="Smoke tests">
+    <test name="Negative tests">
         <groups>
             <run>
-                <include name="smoke"/>
+                <include name="negative"/>
             </run>
         </groups>
         <packages>

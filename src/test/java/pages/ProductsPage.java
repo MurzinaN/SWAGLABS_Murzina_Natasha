@@ -57,26 +57,22 @@ public class ProductsPage extends HomePage {
 
     public void clickSortNameAToZ() {
         Select select = new Select(sortButton);
-        List<WebElement> options = select.getOptions();
-        options.get(0).click();
+        select.selectByIndex(0);
     }
 
     public void clickSortNameZToA() {
         Select select = new Select(sortButton);
-        List<WebElement> options = select.getOptions();
-        options.get(1).click();
+        select.selectByIndex(1);
     }
 
     public void clickSortPriceLowToHigh() {
         Select select = new Select(sortButton);
-        List<WebElement> options = select.getOptions();
-        options.get(2).click();
+        select.selectByIndex(2);
     }
 
     public void clickSortPriceHighToLow() {
         Select select = new Select(sortButton);
-        List<WebElement> options = select.getOptions();
-        options.get(3).click();
+        select.selectByIndex(3);
     }
 
     public List<String> sortNameZToA() {
@@ -84,19 +80,5 @@ public class ProductsPage extends HomePage {
         List<String> names = productsName.stream().map(option -> option.getText()).toList();
         return names;
     }
-
-    public List<String> expectedProductNamesSortNameZToA() {
-        List<String> expectedProductName = new ArrayList<String>();
-        expectedProductName.add("Sauce Labs Bike Light");
-        expectedProductName.add("Sauce Labs Fleece Jacket");
-        expectedProductName.add("Sauce Labs Bolt T-Shirt");
-        expectedProductName.add("Sauce Labs Backpack");
-        expectedProductName.add("Test.allTheThings() T-Shirt (Red)");
-        expectedProductName.add("Sauce Labs Onesie");
-        Collections.sort(expectedProductName);
-        Collections.reverse(expectedProductName);
-        return expectedProductName;
-    }
-
 
 }

@@ -64,10 +64,10 @@ public class BaseTest {
         ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
-     /* @AfterClass(alwaysRun = true)
+     @AfterClass(alwaysRun = true)
       public void finish() {
           this.driver.quit();
-          }*/
+          }
 }
 
 

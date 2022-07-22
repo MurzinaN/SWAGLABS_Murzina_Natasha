@@ -7,6 +7,10 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class ProductsTest extends BaseTest {
 
     @Test(description = "Checking the availability of products in the catalog by name, price and description", groups = {"regression"}, dataProvider = "isProductInCatalogPresentTestData")
@@ -36,15 +40,27 @@ public class ProductsTest extends BaseTest {
         Assert.assertTrue(LoginPage.isLoginFormPresent());
 
     }
+    public List<String> expectedProductNamesSortNameZToA() {
+        List<String> expectedProductName = new ArrayList<String>();
+        expectedProductName.add("Sauce Labs Bike Light");
+        expectedProductName.add("Sauce Labs Fleece Jacket");
+        expectedProductName.add("Sauce Labs Bolt T-Shirt");
+        expectedProductName.add("Sauce Labs Backpack");
+        expectedProductName.add("Test.allTheThings() T-Shirt (Red)");
+        expectedProductName.add("Sauce Labs Onesie");
+        Collections.sort(expectedProductName);
+        Collections.reverse(expectedProductName);
+        return expectedProductName;
+    }
 
     @Test(description = "Checking the sorting of products in the catalog Z to A", groups = {"regression"})
     public void sortTestZToA() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.clickSortNameZToA();
         ProductsPage.sortNameZToA();
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(0), ProductsPage.expectedProductNamesSortNameZToA().get(0));
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(3), ProductsPage.expectedProductNamesSortNameZToA().get(3));
-        Assert.assertEquals(ProductsPage.sortNameZToA().get(5), ProductsPage.expectedProductNamesSortNameZToA().get(5));
+        Assert.assertEquals(ProductsPage.sortNameZToA().get(0), expectedProductNamesSortNameZToA().get(0));
+        Assert.assertEquals(ProductsPage.sortNameZToA().get(3), expectedProductNamesSortNameZToA().get(3));
+        Assert.assertEquals(ProductsPage.sortNameZToA().get(5), expectedProductNamesSortNameZToA().get(5));
 
     }
 
