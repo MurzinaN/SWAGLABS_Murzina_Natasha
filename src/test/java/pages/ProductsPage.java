@@ -13,8 +13,6 @@ import java.util.List;
 
 public class ProductsPage extends HomePage {
     String productContainerLocator = "//div[@class = 'inventory_item_name' and text() = '%s']/ancestor::div[@class='inventory_item']";
-   // @FindBy(className = "product_sort_container")
-    //WebElement sortButton;
     private final By sortButton = By.className("product_sort_container");
     private final By addToCartButton = By.cssSelector("button[id^='add-to-cart']");
     private final By productLink = By.cssSelector("a[id$='_link']");
