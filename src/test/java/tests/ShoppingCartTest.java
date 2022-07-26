@@ -4,21 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class ShoppingCartTest extends BaseTest{
+public class ShoppingCartTest extends BaseTest {
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
 
-    @Test
-    public void itemDetailsShoppingCartTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+    @Test(description = "Verify information about the product in the shopping cart", groups = {"regression"})
+    public void itemDetailsShoppingCartTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         Assert.assertEquals(ShoppingCartPage.getProductShoppingCartPrice(PRODUCT_NAME), "$7.99", "Checking price in shopping cart");
-        Assert.assertEquals(ShoppingCartPage.getProductDescriptionShoppingCartText(PRODUCT_NAME),"Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.", "Checking description in shopping cart");
+        Assert.assertEquals(ShoppingCartPage.getProductDescriptionShoppingCartText(PRODUCT_NAME), "Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.", "Checking description in shopping cart");
     }
-    @Test
-    public void clickRemoveShoppingCartTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+
+    @Test(description = "Removing products from the cart", groups = {"regression"})
+    public void clickRemoveShoppingCartTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
@@ -26,13 +27,13 @@ public class ShoppingCartTest extends BaseTest{
         Assert.assertFalse(ShoppingCartPage.productContainerShoppingCartPresent(PRODUCT_NAME), "The product shouldn't be visible in the shopping cart");
     }
 
-    @Test
-    public void quantityShoppingCartTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+    @Test(description = "Checking the quantity of goods of the same type in the basket", groups = {"regression"})
+    public void quantityShoppingCartTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         Assert.assertEquals(ShoppingCartPage.getQuantityProductShoppingCartText(PRODUCT_NAME), "1", "Checking the quantity of goods in the cart");
-        }
+    }
 
 }

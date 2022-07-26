@@ -1,56 +1,68 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
-public class CheckoutTest extends BaseTest{
+public class CheckoutTest extends BaseTest {
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
-    String firstNameErrorMessage = "Error: First Name is required";
-    String lastNameErrorMessage = "Error: Last Name is required";
+    final static String COMPLETION_MESSAGE = "THANK YOU FOR YOUR ORDER";
 
-    @Test
-    public void positiveCheckoutYourInfoTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+    @Test(description = "Entering correct data when placing an order", groups = {"smoke"})
+    public void positiveCheckoutYourInfoTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         ShoppingCartPage.clickCheckoutButton();
-        CheckoutYourInfoPage.setFirstName("Jim");
-        CheckoutYourInfoPage.setLastName("Beam");
-        CheckoutYourInfoPage.setZip("12345");
-        CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertFalse(CheckoutYourInfoPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
+        CheckoutPage.setFirstName("Jim");
+        CheckoutPage.setLastName("Beam");
+        CheckoutPage.setZip("12345");
+        CheckoutPage.clickContinueButton();
+        Assert.assertFalse(CheckoutPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
     }
 
-    @Test
-    public void negativeEmptyFormCheckoutYourInfoTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+    @Test(description = "Entering incorrect data when placing an order", groups = {"negative"}, dataProvider = "negativeCheckoutYourInfoTestData")
+    public void negativeCheckoutYourInfoTest(String firstName, String lastName, String zip, String errorMessage) {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         ShoppingCartPage.clickCheckoutButton();
-        CheckoutYourInfoPage.setFirstName("");
-        CheckoutYourInfoPage.setLastName("");
-        CheckoutYourInfoPage.setZip("");
-        CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed(), "Error message should be on display");
-        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),firstNameErrorMessage, "Error message should be 'Error: First Name is required'");
+        CheckoutPage.setFirstName(firstName);
+        CheckoutPage.setLastName(lastName);
+        CheckoutPage.setZip(zip);
+        CheckoutPage.clickContinueButton();
+        Assert.assertTrue(CheckoutPage.isCheckoutErrorMessageDisplayed(), "Error message should be on display");
+        Assert.assertEquals(CheckoutPage.getCheckoutErrorMessageText(), errorMessage, "Error message should be 'Error: First Name is required'");
     }
 
-    @Test
-    public void negativeOnlyFirstNameCheckoutYourInfoTest(){
-        LoginPage.login("standard_user", "secret_sauce");
+    @DataProvider
+    public Object[][] negativeCheckoutYourInfoTestData() {
+        return new Object[][]{
+                {"Jim", "", "", "Error: Last Name is required"},
+                {"", "Beam", "", "Error: First Name is required"},
+                {"", "", "123", "Error: First Name is required"},
+                {"Jim", "Beam", "", "Error: Postal Code is required"},
+                {"Jim", "", "123", "Error: Last Name is required"},
+                {"", "Beam", "123", "Error: First Name is required"}
+        };
+    }
+
+    @Test(description = "Checkout", groups = {"smoke"})
+    public void CheckoutTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
         ItemDetailsPage.clickAddToCartButton();
         ItemDetailsPage.clickShoppingCartButton();
         ShoppingCartPage.clickCheckoutButton();
-        CheckoutYourInfoPage.setFirstName("Jim");
-        CheckoutYourInfoPage.setLastName("");
-        CheckoutYourInfoPage.setZip("");
-        CheckoutYourInfoPage.clickContinueButton();
-        Assert.assertTrue(CheckoutYourInfoPage.isCheckoutErrorMessageDisplayed(), "Error message should be on display");
-        Assert.assertEquals(CheckoutYourInfoPage.getCheckoutErrorMessageText(),lastNameErrorMessage, "Error message should be 'Error: Last Name is required'");
+        CheckoutPage.setFirstName("Jim");
+        CheckoutPage.setLastName("Beam");
+        CheckoutPage.setZip("12345");
+        CheckoutPage.clickContinueButton();
+        CheckoutOverviewPage.clickFinishButton();
+        Assert.assertEquals(CheckoutCompletePage.getOrderCompletionMessageText(), COMPLETION_MESSAGE, "On display should be  message that the order has been successfully completed");
     }
 
 }

@@ -1,24 +1,35 @@
 package tests;
+
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-public class LoginTest extends BaseTest{
+
+public class LoginTest extends BaseTest {
 
 
-    @Test
-    public void positiveLoginTest(){
-        LoginPage.setUserName("standard_user");
-        LoginPage.setPassword("secret_sauce");
-        LoginPage.clickLoginButton();
+    @Test(description = "Authorization check with correct data", groups = {"smoke"})
+    public void positiveLoginTest() {
+        LoginPage.login(USER_NAME, PASSWORD);
         Assert.assertTrue(ProductsPage.isProductsPageHeaderDisplayed(), "ProductsPageHeader should be on display");
     }
 
-    @Test
-    public void negativeLoginTest(){
-        LoginPage.setUserName("");
-        LoginPage.setPassword("secret_sauce");
+    @Test(description = "Authorization check with incorrect data", groups = {"negative"}, dataProvider = "negativeLoginTestData")
+    public void negativeLoginTest(String userName, String password, String errorMessage) {
+        LoginPage.setUserName(userName);
+        LoginPage.setPassword(password);
         LoginPage.clickLoginButton();
         Assert.assertTrue(LoginPage.isErrorMessageDisplayed(), "Error message should be on display");
-        Assert.assertEquals(LoginPage.getErrorMessageTest(),"Epic sadface: Username is required", "Error message should be 'Epic sadface: Username is required'");
+        Assert.assertEquals(LoginPage.getErrorMessageText(), errorMessage, "Error message should be: " + errorMessage);
+    }
+
+    @DataProvider
+    public Object[][] negativeLoginTestData() {
+        return new Object[][]{
+                {"", "secret_sauce", "Epic sadface: Username is required"},
+                {"standard_user", "", "Epic sadface: Password is required"},
+                {"", "", "Epic sadface: Username is required"},
+                {"abc", "abc", "Epic sadface: Username and password do not match any user in this service"}
+        };
     }
 
 }

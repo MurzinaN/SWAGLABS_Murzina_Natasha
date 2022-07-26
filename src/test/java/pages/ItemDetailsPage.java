@@ -1,4 +1,5 @@
 package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,18 +14,23 @@ public class ItemDetailsPage extends HomePage {
     public ItemDetailsPage(WebDriver driver) {
         super(driver);
     }
+
     public void clickAddToCartButton() {
         driver.findElement(addToCartButton).click();
     }
+
     public void clickBackToProductsButton() {
         driver.findElement(backToProductsButton).click();
     }
+
     public String getItemName() {
         return driver.findElement(itemName).getText();
     }
+
     public String getItemDescription() {
         return driver.findElement(itemDescription).getText();
     }
+
     public String getItemPrice() {
         return driver.findElement(itemPrice).getText();
     }
