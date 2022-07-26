@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProductsTest extends BaseTest {
+    protected final static String SORT_Z_TO_A = "Name (Z to A)";
 
     @Test(description = "Checking the availability of products in the catalog by name, price and description", groups = {"regression"}, dataProvider = "isProductInCatalogPresentTestData")
     public void isProductInCatalogPresentTest(String productName, String priceProduct, String description) {
@@ -37,6 +38,7 @@ public class ProductsTest extends BaseTest {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.clickMenuButton();
         ProductsPage.clickLogoutButton();
+        LoginPage.waitLoginForm();
         Assert.assertTrue(LoginPage.isLoginFormPresent());
 
     }
@@ -56,9 +58,9 @@ public class ProductsTest extends BaseTest {
     @Test(description = "Checking the sorting of products in the catalog Z to A", groups = {"regression"})
     public void sortTestZToA() {
         LoginPage.login(USER_NAME, PASSWORD);
-        ProductsPage.clickSortNameZToA();
-        ProductsPage.sortNameZToA();
-        Assert.assertEquals(ProductsPage.sortNameZToA(), expectedProductNamesSortNameZToA());
+        ProductsPage.clickSort(SORT_Z_TO_A);
+        ProductsPage.getSortProducts();
+        Assert.assertEquals(ProductsPage.getSortProducts(), expectedProductNamesSortNameZToA());
     }
 
 

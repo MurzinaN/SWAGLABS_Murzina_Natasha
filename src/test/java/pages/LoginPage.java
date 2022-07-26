@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
-    static @FindBy(id = "login_button_container")
-    WebElement loginForm;
+    //static @FindBy(id = "login_button_container")
+   // WebElement loginForm;
+    final By loginForm = By.id("login_button_container");
     @FindBy(id = "user-name")
     WebElement usernameInput;
     @FindBy(id = "password")
@@ -51,11 +53,12 @@ public class LoginPage extends BasePage {
         setPassword(password);
         clickLoginButton();
     }
+    public void waitLoginForm() {
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(loginForm));
+    }
 
     public boolean isLoginFormPresent() {
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.visibilityOf(loginForm));
-        LoginPage.loginForm.isDisplayed();
-        return true;
+        return driver.findElement(loginForm).isDisplayed();
     }
 }

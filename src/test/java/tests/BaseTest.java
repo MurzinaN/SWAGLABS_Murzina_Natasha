@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -27,9 +26,9 @@ public class BaseTest {
     protected CheckoutOverviewPage CheckoutOverviewPage;
     protected CheckoutCompletePage CheckoutCompletePage;
 
-    @Parameters({"browser"})
-    @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browserName, ITestContext testContext) throws Exception {
+    @BeforeClass (alwaysRun = true)
+    public void setUp(ITestContext testContext) throws Exception {
+        String browserName = System.getProperty("browser");
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();

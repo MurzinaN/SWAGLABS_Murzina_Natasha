@@ -32,8 +32,29 @@
     </dependencies>
 
     <properties>
+        <seleniumVersion>3.141.59</seleniumVersion>
+        <testNgVersion>7.4.0</testNgVersion>
+        <suiteXmlFile>regressionTest.xml</suiteXmlFile>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <systemProperties>
+                        <browser>chrome</browser>
+                    </systemProperties>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
