@@ -1,11 +1,13 @@
 package tests;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utils.Screen;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +32,12 @@ public class TestListener implements ITestListener {
         WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
+            Screen.attachScreenshot(driver);
             FileUtils.copyFile(file, new File("target/surefire-reports/screenshots/screenshot_"+result.getName()+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 }

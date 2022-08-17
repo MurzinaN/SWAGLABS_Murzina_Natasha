@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -7,7 +8,8 @@ import org.testng.annotations.Test;
 public class ItemDetailsTest extends BaseTest {
 
 
-    @Test(description = "Check information about the selected product on the details page", groups = {"regression"}, dataProvider = "ProductInformationOnDetailPage")
+    @Test(groups = {"regression"}, dataProvider = "ProductInformationOnDetailPage")
+    @Description("Check information about the selected product on the details page")
     public void verifyProductInformationOnDetailPage(String productName, String priceProduct, String description) {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(productName);

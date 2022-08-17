@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +15,8 @@ import java.util.List;
 public class ProductsTest extends BaseTest {
     protected final static String SORT_Z_TO_A = "Name (Z to A)";
 
-    @Test(description = "Checking the availability of products in the catalog by name, price and description", groups = {"regression"}, dataProvider = "isProductInCatalogPresentTestData")
+    @Test(groups = {"regression"}, dataProvider = "isProductInCatalogPresentTestData")
+    @Description("Checking the availability of products in the catalog by name, price and description")
     public void isProductInCatalogPresentTest(String productName, String priceProduct, String description) {
         LoginPage.login(USER_NAME, PASSWORD);
         Assert.assertEquals(ProductsPage.getProductDescriptionText(productName), description, "Checking product description by product name");
@@ -33,7 +35,8 @@ public class ProductsTest extends BaseTest {
         };
     }
 
-    @Test(description = "Logout", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("Logout")
     public void logoutTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.clickMenuButton();
@@ -55,7 +58,8 @@ public class ProductsTest extends BaseTest {
         return expectedProductName;
     }
 
-    @Test(description = "Checking the sorting of products in the catalog Z to A", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("Checking the sorting of products in the catalog Z to A")
     public void sortTestZToA() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.clickSort(SORT_Z_TO_A);

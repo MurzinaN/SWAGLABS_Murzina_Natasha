@@ -1,10 +1,13 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import utils.Screen;
+
 import java.util.List;
 
 public class ProductsPage extends HomePage {
@@ -25,10 +28,11 @@ public class ProductsPage extends HomePage {
     public boolean isProductsPageHeaderDisplayed() {
         return driver.findElement(productsPageHeader).isDisplayed();
     }
-
+    @Step("Open item with name: {productName}")
     public void openItemByName(String productName) {
         WebElement productContainer = getProductContainerByName(productName);
         productContainer.findElement(productLink).click();
+        Screen.attachScreenshot(driver);
     }
 
     public void clickAddToCartButton(String productName) {
@@ -45,14 +49,15 @@ public class ProductsPage extends HomePage {
         WebElement productContainer = getProductContainerByName(productName);
         return productContainer.findElement(descriptionText).getText();
     }
-
+    @Step("Choose product with name: {productName}")
     private WebElement getProductContainerByName(String productName) {
         return driver.findElement(By.xpath(String.format(productContainerLocator, productName)));
     }
-
+    @Step("Click button 'Sort' and choose {visibleText}")
     public void clickSort(String visibleText) {
         Select select = new Select(driver.findElement(sortButton));
         select.selectByVisibleText(visibleText);
+        Screen.attachScreenshot(driver);
     }
 
     public List<String> getSortProducts() {

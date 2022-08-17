@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import utils.Screen;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +29,7 @@ public class BaseTest {
 
     @BeforeClass (alwaysRun = true)
     public void setUp(ITestContext testContext) throws Exception {
-        String browserName = System.getProperty("browser");
+        String browserName = System.getProperty("browser", "chrome");
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();

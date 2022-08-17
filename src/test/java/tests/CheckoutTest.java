@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,7 +10,8 @@ public class CheckoutTest extends BaseTest {
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
     final static String COMPLETION_MESSAGE = "THANK YOU FOR YOUR ORDER";
 
-    @Test(description = "Entering correct data when placing an order", groups = {"smoke"})
+    @Test(groups = {"smoke"})
+    @Description("Entering correct data when placing an order")
     public void positiveCheckoutYourInfoTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
@@ -23,7 +25,8 @@ public class CheckoutTest extends BaseTest {
         Assert.assertFalse(CheckoutPage.checkoutFormPresent(), "CheckoutForm shouldn't be on display");
     }
 
-    @Test(description = "Entering incorrect data when placing an order", groups = {"negative"}, dataProvider = "negativeCheckoutYourInfoTestData")
+    @Test(groups = {"negative"}, dataProvider = "negativeCheckoutYourInfoTestData")
+    @Description("Entering correct data when placing an order")
     public void negativeCheckoutYourInfoTest(String firstName, String lastName, String zip, String errorMessage) {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
@@ -50,7 +53,8 @@ public class CheckoutTest extends BaseTest {
         };
     }
 
-    @Test(description = "Checkout", groups = {"smoke"})
+    @Test(groups = {"smoke"})
+    @Description("Checkout")
     public void CheckoutTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);

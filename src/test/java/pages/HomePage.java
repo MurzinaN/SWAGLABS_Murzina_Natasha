@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +17,7 @@ public abstract class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
-
+    @Step("Click button 'Menu'")
     public void clickMenuButton() {
         driver.findElement(menuButton).click();
     }
@@ -28,7 +29,7 @@ public abstract class HomePage extends BasePage {
     public void clickAboutButton() {
         driver.findElement(aboutButton).click();
     }
-
+    @Step("Click button 'Logout'")
     public void clickLogoutButton() {
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(logoutButton));
@@ -38,7 +39,7 @@ public abstract class HomePage extends BasePage {
     public void clickResetAppStateButton() {
         driver.findElement(resetAppStateButton).click();
     }
-
+    @Step("Click button 'ShoppingCart'")
     public void clickShoppingCartButton() {
         driver.findElement(shoppingCartButton).click();
     }

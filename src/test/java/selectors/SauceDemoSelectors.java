@@ -1,21 +1,24 @@
+package selectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 
 
-public class SauceDemoSelectors extends BaseTest{
+public class SauceDemoSelectors extends BaseTest {
 
     @Test
-    public void sauceDemoTest(){
+    public void sauceDemoTest() {
         WebElement userName = driver.findElement(By.cssSelector("[placeholder='Username']"));
         WebElement userNameStandard = driver.findElement(By.cssSelector("#login_credentials"));
-        String textName[] = userNameStandard.getText().split("\n");
+        String[] textName = userNameStandard.getText().split("\n");
         String standardUser = textName[1];
         userName.sendKeys(standardUser);
         WebElement password = driver.findElement(By.cssSelector("[type~='password']"));
         WebElement passwordForAll = driver.findElement(By.xpath("//div[@class='login_password']"));
-        String textPassword[] = passwordForAll.getText().split("\n");
+        String[] textPassword = passwordForAll.getText().split("\n");
         String secretSauce = textPassword[1];
         password.sendKeys(secretSauce);
         WebElement loginButton = driver.findElement(By.cssSelector(".submit-button.btn_action"));
