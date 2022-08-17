@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -7,7 +8,8 @@ import org.testng.annotations.Test;
 public class ShoppingCartTest extends BaseTest {
     final static String PRODUCT_NAME = "Sauce Labs Onesie";
 
-    @Test(description = "Verify information about the product in the shopping cart", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("Verify information about the product in the shopping cart")
     public void itemDetailsShoppingCartTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
@@ -17,7 +19,8 @@ public class ShoppingCartTest extends BaseTest {
         Assert.assertEquals(ShoppingCartPage.getProductDescriptionShoppingCartText(PRODUCT_NAME), "Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.", "Checking description in shopping cart");
     }
 
-    @Test(description = "Removing products from the cart", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("Removing products from the cart")
     public void clickRemoveShoppingCartTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);
@@ -27,7 +30,8 @@ public class ShoppingCartTest extends BaseTest {
         Assert.assertFalse(ShoppingCartPage.productContainerShoppingCartPresent(PRODUCT_NAME), "The product shouldn't be visible in the shopping cart");
     }
 
-    @Test(description = "Checking the quantity of goods of the same type in the basket", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("Checking the quantity of goods of the same type in the basket")
     public void quantityShoppingCartTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         ProductsPage.openItemByName(PRODUCT_NAME);

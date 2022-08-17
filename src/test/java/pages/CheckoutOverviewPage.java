@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -59,7 +60,7 @@ public class CheckoutOverviewPage extends HomePage {
     public void clickCancelOverviewButton() {
         driver.findElement(cancelOverviewButton).click();
     }
-
+    @Step("Click button 'Finish'")
     public void clickFinishButton() {
         driver.findElement(finishButton).click();
     }

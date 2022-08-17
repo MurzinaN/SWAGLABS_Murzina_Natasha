@@ -1,9 +1,12 @@
+package selectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import tests.BaseTest;
 
 public class SauceDemoShopTest extends BaseTest {
 
-    public void swagLabsTest(){
+    public void swagLabsTest() {
         WebElement userName = driver.findElement(By.cssSelector("[placeholder='Username']"));
         WebElement userNameStandard = driver.findElement(By.cssSelector("#login_credentials"));
         WebElement password = driver.findElement(By.cssSelector("[type~='password']"));

@@ -1,19 +1,23 @@
 package tests;
 
+
+import io.qameta.allure.Description;
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+    public class LoginTest extends BaseTest {
 
-
-    @Test(description = "Authorization check with correct data", groups = {"smoke"})
+    @Test(groups = {"smoke"})
+    @Description("Authorization with correct data")
     public void positiveLoginTest() {
         LoginPage.login(USER_NAME, PASSWORD);
         Assert.assertTrue(ProductsPage.isProductsPageHeaderDisplayed(), "ProductsPageHeader should be on display");
     }
 
-    @Test(description = "Authorization check with incorrect data", groups = {"negative"}, dataProvider = "negativeLoginTestData")
+    @Test(groups = {"negative"}, dataProvider = "negativeLoginTestData")
+    @Description("Authorization with incorrect data")
     public void negativeLoginTest(String userName, String password, String errorMessage) {
         LoginPage.setUserName(userName);
         LoginPage.setPassword(password);
