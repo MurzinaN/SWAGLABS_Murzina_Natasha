@@ -11,6 +11,7 @@ pipeline {
 
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH'
+     choice(name: 'SUITE_NAME', choices: ['smokeTest.xml', 'negativeTest.xml', 'regressionTest.xml'], description: '')
     }
 
   stages {
@@ -20,7 +21,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/MurzinaN/SWAGLABS_Murzina_Natasha.git'
 
                 // Run Maven on a Unix agent.
-               bat "mvn -Dmaven.test.failure.ignore=true clean test"
+               bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
