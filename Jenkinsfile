@@ -11,8 +11,8 @@ pipeline {
 
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH'
-     choice(name: 'SUITE_NAME', choices: ['smokeTest.xml', 'negativeTest.xml', 'regressionTest.xml'], description: '')
-     choice(name: 'BROWSER', choices: ['chrome', 'firefox'], description: '')
+     choice(name: 'SUITE_NAME', choices: ['smokeTest.xml', 'negativeTest.xml', 'regressionTest.xml'], description: 'Choice suiteXmlFile')
+     choice(name: 'BROWSER', choices: ['chrome', 'firefox'], description: 'Choice browser')
     }
 
   stages {
